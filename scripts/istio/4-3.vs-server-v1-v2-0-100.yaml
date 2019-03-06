@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: chat-server
+spec:
+  gateways:
+  - chat-gateway
+  hosts:
+  - chat-server.apps.bcgov-4f5b.openshiftworkshop.com
+  http:
+  - route:
+    - destination:
+        host: chat-server
+        subset: v1
+      weight: 0
+    websocketUpgrade: true
+    - destination:
+        host: chat-server
+        subset: v2
+      weight: 100
+    websocketUpgrade: true
