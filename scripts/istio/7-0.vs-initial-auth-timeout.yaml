@@ -12,4 +12,3 @@ spec:
         port:
           number: 8080
     timeout: 1s
-    websocketUpgrade: true

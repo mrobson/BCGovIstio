@@ -17,7 +17,6 @@ spec:
     - destination:
         host: chat-client
         subset: apple
-    websocketUpgrade: true
   - match:
      - headers:
          User-Agent:
@@ -26,9 +25,7 @@ spec:
     - destination:
         host: chat-client
         subset: android
-    websocketUpgrade: true
   - route:
     - destination:
         host: chat-client
         subset: v1
-    websocketUpgrade: true
