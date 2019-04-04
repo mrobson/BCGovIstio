@@ -1,11 +1,18 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: auth-cb-policy
+  name: auth
 spec:
   host: auth
   trafficPolicy:
     outlierDetection:
       consecutiveErrors: 1
       interval: 5s
-      baseEjectionTime: 7s
+      baseEjectionTime: 9s
+    loadBalancer:
+      simple: ROUND_ROBIN
+  subsets:
+  - name: v1
+    labels:
+      app: auth
+      version: v1

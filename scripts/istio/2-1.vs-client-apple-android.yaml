@@ -5,9 +5,9 @@ metadata:
   namespace: chat
 spec:
   gateways:
-  - chat-gateway
+  - client-gateway
   hosts:
-  - chat-client.apps.bcgov-4f5b.openshiftworkshop.com
+  - chat-client.apps.atlanta-5d16.openshiftworkshop.com
   http:
   - match:
      - headers:

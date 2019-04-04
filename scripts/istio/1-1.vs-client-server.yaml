@@ -4,9 +4,9 @@ metadata:
   name: chat-server
 spec:
   gateways:
-  - chat-gateway
+  - server-gateway
   hosts:
-  - chat-server.apps.bcgov-4f5b.openshiftworkshop.com
+  - chat-server.apps.atlanta-5d16.openshiftworkshop.com
   http:
   - match:
     - uri:
@@ -22,9 +22,9 @@ metadata:
   name: chat-client
 spec:
   gateways:
-  - chat-gateway
+  - client-gateway
   hosts:
-  - chat-client.apps.bcgov-4f5b.openshiftworkshop.com
+  - chat-client.apps.atlanta-5d16.openshiftworkshop.com
   http:
   - match:
     - uri:

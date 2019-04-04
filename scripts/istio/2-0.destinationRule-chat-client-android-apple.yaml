@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: chat-client
 spec:
-  host: chat-client
+  host: client-client
   trafficPolicy:
     loadBalancer:
       simple: ROUND_ROBIN

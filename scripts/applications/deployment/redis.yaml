@@ -1,15 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: redis
+  name: redis-v1
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
       labels:
-        app: redis-ephemeral
-        name: redis
+        app: redis
+        version: v1
     spec:
       containers:
       - env:
@@ -18,14 +19,11 @@ spec:
             secretKeyRef:
               key: database-password
               name: redis
+        name: redis
         image: registry.access.redhat.com/rhscl/redis-32-rhel7
         imagePullPolicy: Always
-        name: redis
         ports:
         - containerPort: 6379
-        resources:
-          limits:
-            memory: 512Mi
         volumeMounts:
         - mountPath: /var/lib/redis/data
           name: redis-data
@@ -49,14 +47,13 @@ type: Opaque
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: redis-ephemeral
-    template: redis-ephemeral-template
   name: redis
+  labels:
+    app: redis
 spec:
   ports:
   - name: tcp
     port: 6379
     protocol: TCP
   selector:
-    name: redis
+    app: redis
